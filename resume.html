@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    header h1 {
+      color: #333;
+    }
+    header p {
+      color: #666;
+    }
+    h2, h3 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #555;
+      margin-bottom: 5px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .section:last-child {
+      margin-bottom: 0;
+    }
+    .section-header {
+      background-color: #f0f0f0;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .skill-item {
+      display: inline-block;
+      background-color: #007bff;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 4px;
+      margin-right: 5px;
+      margin-bottom: 5px;
+    }
+    .experience-item {
+      margin-bottom: 10px;
+    }
+    .github-link {
+      color: #007bff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .github-link:hover {
+      text-decoration: underline;
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>John Doe</h1>
+      <p>Web Developer</p>
+    </header>
+    <section class="section">
+      <div class="section-header">
+        <h2>Contact Information</h2>
+      </div>
+      <p>Email: john@example.com</p>
+      <p>Phone: +1234567890</p>
+      <p>Address: 123 Main St, City, Country</p>
+      <p><a href="https://github.com/SNU-WP/basecamp" class="github-link">GitHub</a></p>
+    </section>
+    <section class="section">
+      <div class="section-header">
+        <h2>Skills</h2>
+      </div>
+      <ul>
+        <li class="skill-item">HTML</li>
+        <li class="skill-item">CSS</li>
+        <li class="skill-item">JavaScript</li>
+        <li class="skill-item">Responsive Web Design</li>
+      </ul>
+    </section>
+    <section class="section">
+      <div class="section-header">
+        <h2>Experience</h2>
+      </div>
+      <div class="experience-item">
+        <p>Web Developer at XYZ Company (2018 - Present)</p>
+        <ul>
+          <li>Developed responsive websites using HTML, CSS, and JavaScript.</li>
+          <li>Collaborated with team members to design and implement new features.</li>
+          <li>Optimized website performance and user experience.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-header">
+        <h2>Education</h2>
+      </div>
+      <p>Bachelor's Degree in Computer Science, ABC University (2014 - 2018)</p>
+    </section>
+  </div>
+</body>
+</html>

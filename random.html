@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Challenge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+            flex-grow: 1;
+            margin-right: 20px;
+            min-width: 300px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+
+        .result-message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .won {
+            color: #28a745;
+        }
+
+        .lost {
+            color: #dc3545;
+        }
+
+        .tie {
+            color: #ffc107;
+        }
+
+        .win-streak {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 10px;
+            color: blue;
+        }
+
+        .leaderboard {
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            min-width: 250px;
+            flex-grow: 0;
+            margin-right: 40px;
+        }
+
+        .leaderboard h3 {
+            margin-top: 0;
+        }
+
+        .leaderboard-item {
+            margin-bottom: 10px;
+        }
+
+        .leaderboard-item span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Random Challenge</h1>
+    </header>
+
+    <main>
+        <h2>Random Challenge</h2>
+        <button id="randomChallenge">Random Challenge</button>
+        <p id="result" class="result-message"></p>
+        <p id="winStreak" class="win-streak">Win Streak: 0</p>
+    </main>
+
+    <div class="leaderboard">
+        <h3>Leaderboard</h3>
+        <ul id="leaderboardList">
+            <!-- Leaderboard items will be dynamically added here -->
+        </ul>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Random Challenge. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var winStreak = 0;
+        var leaderboard = [];
+
+        document.getElementById('randomChallenge').addEventListener('click', function() {
+            var userNumber = Math.floor(Math.random() * 101); // Generate random number between 0 and 100 for the user
+            var systemNumber = Math.floor(Math.random() * 101); // Generate random number between 0 and 100 for the system
+
+            var resultMessage = getResultMessage(userNumber, systemNumber);
+            var resultClass = getResultClass(userNumber, systemNumber);
+
+            var resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>User Number: ' + userNumber + '</p>' +
+                                '<p>System Number: ' + systemNumber + '</p>' +
+                                '<p class="result-message ' + resultClass + '">' + resultMessage + '</p>';
+
+            updateWinStreak(resultClass);
+            updateLeaderboard(resultClass);
+        });
+
+        function getResultMessage(userNumber, systemNumber) {
+            if (userNumber > systemNumber) {
+                return 'Congratulations! You won!';
+            } else if (userNumber < systemNumber) {
+                return 'Sorry! System won. Try again!';
+            } else {
+                return 'It\'s a tie! Try again!';
+            }
+        }
+
+        function getResultClass(userNumber, systemNumber) {
+            if (userNumber > systemNumber) {
+                return 'won';
+            } else if (userNumber < systemNumber) {
+                return 'lost';
+            } else {
+                return 'tie';
+            }
+        }
+
+        function updateWinStreak(resultClass) {
+            if (resultClass === 'won') {
+                winStreak++;
+            } else {
+                if(winStreak > 0) {
+                var timestamp = new Date().toLocaleString();
+                leaderboard.push({ winStreak, timestamp })
+                }
+                winStreak = 0;
+            }
+
+            document.getElementById('winStreak').innerText = 'Win Streak: ' + winStreak;
+        }
+
+        function updateLeaderboard(resultClass) {
+            leaderboard.sort((a, b) => b.winStreak - a.winStreak); // Sort by win streak descending
+
+            var leaderboardList = document.getElementById('leaderboardList');
+            leaderboardList.innerHTML = '';
+
+            for (var i = 0; i < Math.min(leaderboard.length, 3); i++) {
+                    var leaderboardItem = document.createElement('li');
+                    leaderboardItem.classList.add('leaderboard-item');
+                    leaderboardItem.innerHTML = '<span>Win Streak:</span> ' + leaderboard[i].winStreak + ' <span>Timestamp:</span> ' + leaderboard[i].timestamp;
+                    leaderboardList.appendChild(leaderboardItem);
+                    
+                }
+        }
+    </script>
+</body>
+</html>
