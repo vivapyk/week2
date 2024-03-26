@@ -44,15 +44,10 @@
                 }
             }
 
-            // while (results.length > 0) {
-            //     results[0].parentNode.removeChild(results[0]);
-            // }
-
-
             if (inputElement.value < 1) {
                 let item = document.createElement("p");
                 item.setAttribute('class', 'child')
-                item.innerHTML = '1보다 큰 숫자를 입력해 주세요.'
+                item.innerHTML = '0보다 큰 숫자를 입력해 주세요.'
 
                 resultElement.appendChild(item)
                 return
